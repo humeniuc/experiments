@@ -10,14 +10,21 @@ function _initButtons()
                 }
 
                 console.log('click on ', btn);
+                console.log('click poate fi "click" sau "enter" în formular');
 
                 const form = btn.form;
                 const _submitterKey = Math.random();
                 form._submitter = btn;
                 form._submitterKey = _submitterKey;
+
+                console.log('set form._submitter', form._submitter);
+                console.log('set form._submitterKey', form._submitterKey);
+
                 setTimeout(() => {
                     if (form._submitter === btn && form._submitterKey === _submitterKey) {
-                        console.log("_submitterKey", _submitterKey);
+                        console.log('delete form._submitter', form._submitter);
+                        console.log('delete form._submitterKey', form._submitterKey);
+
                         delete form._submitter;
                         delete form._submitterKey;
                     } else {

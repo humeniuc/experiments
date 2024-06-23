@@ -1,25 +1,32 @@
 <?php 
 $form_action = './response.php';
 $form_target = "form_response_container";
+$useFetch = (isset($_GET['_enable_fetch']) && $_GET['_enable_fetch'] == 1);
 ?>
 <html>
 <head>
     <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
     <script src="events.js?ts=1"></script>
 
-    <?php if (isset($_GET['_enable_fetch']) && $_GET['_enable_fetch'] == 1) { ?>
+    <?php if ($useFetch) { ?>
     <script src="enable_fetch.js"></script>
     <?php } ?>
 
     <style>
     legend {
         background-color:#eee;
-        border:1px solid #333;
+        border:1px solid #ccc;
+        color: #333;
     }
 
     fieldset {
-        border:1px solid #333;
+        border:1px solid #ccc;
         margin-bottom:20px;
+    }
+
+    form {
+        outline:1px dashed #ccc;
+        padding:5px; margin:5px;
     }
 
     .container {
@@ -34,11 +41,19 @@ $form_target = "form_response_container";
 
     .response {
         position:fixed;
-        width: 100%;
-        height: 50vh;
         top: 10px;
+    }
+
+    .response iframe {
+        width: 95%;
+        height: 50vh;
         overflow: scroll;
         border: 1px solid #ccc;
+    }
+
+    .response .help {
+        width: 95%;
+        overflow: scroll;    
     }
 
     </style>
@@ -48,13 +63,15 @@ $form_target = "form_response_container";
 <pre>
 TODO: <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit">https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/requestSubmit</a>
 
-<?php if (isset($_GET['_enable_fetch']) && $_GET['_enable_fetch'] == 1) { ?>
-Fetch activ. <a href="<?= $_SERVER['SCRIPT_NAME'] ?>">Dezactivează</a>
+<?php if ($useFetch) { ?>
+Submit cu <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank">Fetch</a> activ. <a href="<?= $_SERVER['SCRIPT_NAME'] ?>">Dezactivează</a>
 <?php } else { ?>
 Submit normal <a href="<?= $_SERVER['SCRIPT_NAME'] ?>?_enable_fetch=1">Activează submit-ul cu fetch</a>
 <?php } ?>
 </pre>
-
+<code>
+Activează consola
+</code>
 
 <div class="container">
 <div class="forms">
@@ -263,8 +280,16 @@ Submit normal <a href="<?= $_SERVER['SCRIPT_NAME'] ?>?_enable_fetch=1">Activeaz�
 </div>
 
 <div class="response_container">
-    <iframe class="response" id="form_response_container" name="form_response_container"></iframe>
-</div>
+    <div class="response">
+        <iframe id="form_response_container" name="form_response_container"></iframe>
+        <div class="help">
+            <ul>
+                <li>"Enter" pe un input declanșează "click" pe primul input/button [type="submit"] al form-ului.</li>
+                <?php if ($useFetch) { ?>
+                <?php } ?>
+            </ul>
+        </div>
+    </div>
 </div>
 
 </body>
