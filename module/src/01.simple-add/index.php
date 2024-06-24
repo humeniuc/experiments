@@ -6,7 +6,7 @@
 
         <script type="module">
         // Modul declarat inline
-        import { _inc, _dec } from './operations.js';
+        import { _inc, _dec } from './module_operations.js';
 
         console.log('module loaded');
         const input = document.getElementById('val');

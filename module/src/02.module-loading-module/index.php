@@ -1,6 +1,6 @@
 <html>
     <head>
-        <script type="module" src="./events.js"></script>
+        <script type="module" src="./module_events.js"></script>
     </head>
     <body>
 

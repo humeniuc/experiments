@@ -1,5 +1,5 @@
 // Modul declarat inline
-import { _inc, _dec } from './operations.js';
+import { _inc, _dec } from './module_operations.js';
 
 console.log('module events.js executed');
 

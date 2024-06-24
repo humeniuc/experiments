@@ -1,4 +1,7 @@
 #!/bin/bash
+
+set -x
+
 command -v docker >/dev/null 2>&1 || { echo >&2 "Docker not installed"; exit 1; }
 
 SCRIPT_DIR="$( dirname "$( readlink -f "${BASH_SOURCE[0]}" )")";

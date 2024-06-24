@@ -7,7 +7,7 @@ foreach ($it as $file) {
     }
 
     if ($file->isDir()) {
-        echo strtr('<a href="{filename}/">{filename}/</a>', ['{filename}' => htmlspecialchars($file->getFilename())]), '<br/>';
+        echo strtr('<a href="{filename}/index.php">{filename}/</a>', ['{filename}' => htmlspecialchars($file->getFilename())]), '<br/>';
     }
 }
 ?>
